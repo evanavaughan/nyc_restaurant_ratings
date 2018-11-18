@@ -1,5 +1,5 @@
 from __init__ import db, app
-from dash_functions import rating_comparison, rating_price_inf, rating_price_ta, inf_price_rating_hist_1, inf_price_rating_hist_2, inf_price_rating_hist_3, inf_price_rating_hist_4, ta_price_rating_hist_1, ta_price_rating_hist_2, ta_price_rating_hist_4
+from dash_graph_data import *
 import dash
 import dash
 import dash_core_components as dcc
@@ -8,17 +8,6 @@ import pandas as pd
 import plotly.graph_objs as go
 from dash.dependencies import Input, Output, State
 
-inf_rating_data = {
-    'Rating <2': {'x': ['$', '$$', '$$$','$$$$'], 'y': [inf_price_rating_hist_1()[0], inf_price_rating_hist_2()[0], inf_price_rating_hist_3()[0], inf_price_rating_hist_4()[0]]},
-    'Rating 2-3': {'x': ['$', '$$', '$$$','$$$$'], 'y': [inf_price_rating_hist_1()[1], inf_price_rating_hist_2()[1], inf_price_rating_hist_3()[1], inf_price_rating_hist_4()[1]]},
-    'Rating >=4': {'x': ['$', '$$', '$$$','$$$$'], 'y': [inf_price_rating_hist_1()[2], inf_price_rating_hist_2()[2], inf_price_rating_hist_3()[2], inf_price_rating_hist_4()[2]]}
-}
-
-ta_rating_data = {
-    'Rating 4-4.25': {'x': ['$', '$$ - $$$','$$$$'], 'y': [ta_price_rating_hist_1()[0], ta_price_rating_hist_2()[0], ta_price_rating_hist_4()[0]]},
-    'Rating 4.25-4.75': {'x': ['$', '$$ - $$$','$$$$'], 'y': [ta_price_rating_hist_1()[1], ta_price_rating_hist_2()[1], ta_price_rating_hist_4()[1]]},
-    'Rating 4.75-5': {'x': ['$', '$$ - $$$','$$$$'], 'y': [ta_price_rating_hist_1()[2], ta_price_rating_hist_2()[2], ta_price_rating_hist_4()[2]]}
-}
 app.title = 'NYC Eats'
 
 app.layout = html.Div(
@@ -72,20 +61,31 @@ app.layout = html.Div(
                 ], className = "six columns")
             ], className = "row")
             ]),
-        dcc.Tab(label='Tab two', children=[
-            html.Div(
-            [ html.H1('This is our graph')
-            ])
-        ]),
-        dcc.Tab(label='Tab three', children=[
+        dcc.Tab(label='Rating Variation', children=[
             html.Div(
             [
-            ])
+                html.Div(
+                    [
+                        dcc.Graph(
+                                figure = fig, id='box-plot'
+                        ),
+                ],
+                className='twelve columns',
+            ),
+        ])
         ]),
-        dcc.Tab(label='Tab four', children=[
+        dcc.Tab(label='Restaurant Map', children=[
             html.Div(
             [
-            ])
+                html.Div(
+                    [
+                        dcc.Graph(
+                                figure = map_fig, id='map'
+                        ),
+                ],
+                className='twelve columns',
+            ),
+        ])
         ]),
         dcc.Tab(label='Tab five', children=[
             html.Div(
