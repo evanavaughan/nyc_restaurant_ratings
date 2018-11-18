@@ -50,8 +50,11 @@ box_layout = go.Layout(title='Infatuation Neighborhood Ratings')
 fig = go.Figure(data=box_data,layout=box_layout)
 
 name_list = [i[0] for i in map_data()]
-rating_list = [i[3] for i in map_data()]
-price_list = [i[4] for i in map_data()]
+rating_list = [str(i[3]) for i in map_data()]
+price_list = [str(i[4]) for i in map_data()]
+text_list = []
+for i in range(len(map_data())):
+    text_list.append(name_list[i]+' , '+rating_list[i]+' , '+price_list[i])
 lat_list = [i[1] for i in map_data()]
 long_list = [i[2] for i in map_data()]
 
@@ -61,7 +64,7 @@ map_data = [ dict(
         locationmode = 'USA-states',
         lon = long_list,
         lat = lat_list,
-        text = name_list+rating_list+price_list,
+        text = text_list,
         mode = 'markers',
         marker = dict(
             size = 8,
