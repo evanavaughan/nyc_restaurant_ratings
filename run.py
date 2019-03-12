@@ -1,5 +1,6 @@
 #from dash_package import *
 from dash_package import *
+from dash_package.db_seed import *
 #from dash_package.db_models import *
 #from dash_package.layout import *
 #from dash_package.etl import *

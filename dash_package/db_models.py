@@ -1,4 +1,4 @@
-from dash_package import db
+from __init__ import db
 
 class Restaurant(db.Model):
     __tablename__ = 'nyc_restaurants'
@@ -60,6 +60,6 @@ class Michelin(db.Model):
     stars = db.Column(db.Integer)
     restaurant_id = db.Column(db.Integer, db.ForeignKey('nyc_restaurants.id'))
     restaurant = db.relationship('Restaurant', back_populates='michelin_info')
-
-db.create_all()
+# 
+# db.create_all()
 # __table_args__ = {'extend_existing': True}

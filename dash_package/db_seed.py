@@ -1,16 +1,8 @@
-from dash_package import *
-from ta_output import ta_with_zips
-from comprehensive_name import get_names
-from infatuation_output import inf_list
-from convert_to_dictionary import mich_dict, zip_dict
-
-# from sqlalchemy import create_engine
-# from sqlalchemy.orm import sessionmaker
-#
-# engine = create_engine('sqlite:///nyc_restaurants.db')
-#
-# Session = sessionmaker(bind=engine)
-# session = Session()
+from __init__ import *
+from scraping_data.comprehensive_name import get_names
+from scraping_data.ta_output import ta_with_zips
+from scraping_data.infatuation_output import inf_list
+from csv_data.convert_to_dictionary import mich_dict, zip_dict
 
 comprehensive_name_list = get_names()
 full_infatuation_list =  inf_list

@@ -1,6 +1,5 @@
 from flask import render_template
-from dash_package import server, app
-
+from __init__ import server, app
 
 @server.route('/nyc_restaurants')
 def render_restaurants():
